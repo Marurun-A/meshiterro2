@@ -1,6 +1,6 @@
 class PostImagesController < ApplicationController
   def new
-    @post_image = Postlmage.new
+    @post_image = PostImage.new
   end
 
   def create
@@ -11,11 +11,17 @@ class PostImagesController < ApplicationController
   end
 
   def index
+    @post_images = PostImage.all
   end
 
   def show
+    @post_image = PostImage.find(params[:id])
   end
-
+  
+  def destroy
+    post_image = PostImage.find(params[:id])
+    post_image.destroy
+    redirect_to '/index'
   private
 
   def post_image_params
